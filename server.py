@@ -1,8 +1,9 @@
 from fastapi import FastAPI
+from pydantic import BaseModel
 
 app = FastAPI()
 
-# Biến lưu nội dung embed mới nhất cho từng boss
+# Biến lưu dữ liệu mới nhất
 latest_doughking = {
     "status": "Offline",
     "data": {
@@ -21,22 +22,24 @@ latest_ripidra = {
     }
 }
 
+# Định nghĩa dữ liệu đầu vào
+class BossData(BaseModel):
+    playerCount: str
+    jobId: str
+    bossName: str
+
 @app.get("/doughking")
 def get_doughking():
     """Trả về dữ liệu mới nhất của Dough King"""
     return latest_doughking
 
 @app.post("/doughking")
-def update_doughking(data: dict):
+def update_doughking(data: BossData):
     """Cập nhật dữ liệu của Dough King"""
     global latest_doughking
     latest_doughking = {
-        "status": "Offline",
-        "data": {
-            "playerCount": data.get("playerCount", "None"),
-            "jobId": data.get("content", "None"),
-            "bossName": data.get("name_boss", "None")
-        }
+        "status": "success",
+        "data": data.dict()  # Chuyển thành dictionary
     }
     return {"message": "successful"}
 
@@ -46,15 +49,11 @@ def get_ripidra():
     return latest_ripidra
 
 @app.post("/ripindra")
-def update_ripidra(data: dict):
+def update_ripidra(data: BossData):
     """Cập nhật dữ liệu của Rip Indra"""
     global latest_ripidra
     latest_ripidra = {
-        "status": "Offline",
-        "data": {
-            "playerCount": data.get("player_count", "None"),
-            "jobId": data.get("content", "None"),
-            "bossName": data.get("name_boss", "None")
-        }
+        "status": "success",
+        "data": data.dict()
     }
     return {"message": "successful"}
