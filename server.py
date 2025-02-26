@@ -34,8 +34,8 @@ def update_doughking(data: dict):
         "status": "Offline",
         "data": {
             "playerCount": data.get("playerCount", "None"),
-            "jobId": data.get("jobId", "None"),
-            "bossName": data.get("bossName", "None")
+            "jobId": data.get("content", "None"),
+            "bossName": data.get("name_boss", "None")
         }
     }
     return {"message": "successful"}
@@ -52,9 +52,9 @@ def update_ripidra(data: dict):
     latest_ripidra = {
         "status": "Offline",
         "data": {
-            "playerCount": data.get("playerCount", "None"),
-            "jobId": data.get("jobId", "None"),
-            "bossName": data.get("bossName", "None")
+            "playerCount": data.get("player_count", "None"),
+            "jobId": data.get("content", "None"),
+            "bossName": data.get("name_boss", "None")
         }
     }
     return {"message": "successful"}
