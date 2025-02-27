@@ -1,9 +1,8 @@
 from fastapi import FastAPI
-from pydantic import BaseModel
 
 app = FastAPI()
 
-# Biến lưu dữ liệu mới nhất
+# Biến lưu nội dung embed mới nhất cho từng boss
 latest_doughking = {
     "status": "Offline",
     "data": {
@@ -22,11 +21,14 @@ latest_ripidra = {
     }
 }
 
-# Định nghĩa dữ liệu đầu vào
-class BossData(BaseModel):
-    playerCount: str
-    jobId: str
-    bossName: str
+latest_mirage = {
+    "status": "Offline",
+    "data": {
+        "playerCount": "None",
+        "jobId": "None",
+        "bossName": "None"
+    }
+}
 
 @app.get("/doughking")
 def get_doughking():
@@ -34,12 +36,16 @@ def get_doughking():
     return latest_doughking
 
 @app.post("/doughking")
-def update_doughking(data: BossData):
+def update_doughking(data: dict):
     """Cập nhật dữ liệu của Dough King"""
     global latest_doughking
     latest_doughking = {
-        "status": "success",
-        "data": data.dict()  # Chuyển thành dictionary
+        "status": "success" if data else "Offline",
+        "data": {
+            "playerCount": data.get("playerCount", "None"),
+            "jobId": data.get("jobId", "None"),
+            "bossName": data.get("bossName", "None")
+        }
     }
     return {"message": "successful"}
 
@@ -49,11 +55,34 @@ def get_ripidra():
     return latest_ripidra
 
 @app.post("/ripindra")
-def update_ripidra(data: BossData):
+def update_ripidra(data: dict):
     """Cập nhật dữ liệu của Rip Indra"""
     global latest_ripidra
     latest_ripidra = {
-        "status": "success",
-        "data": data.dict()
+        "status": "success" if data else "Offline",
+        "data": {
+            "playerCount": data.get("playerCount", "None"),
+            "jobId": data.get("jobId", "None"),
+            "bossName": data.get("bossName", "None")
+        }
+    }
+    return {"message": "successful"}
+
+@app.get("/mirage")
+def get_mirage():
+    """Trả về dữ liệu mới nhất của Mirage"""
+    return latest_mirage
+
+@app.post("/mirage")
+def update_mirage(data: dict):
+    """Cập nhật dữ liệu của Mirage"""
+    global latest_mirage
+    latest_mirage = {
+        "status": "success" if data else "Offline",
+        "data": {
+            "playerCount": data.get("playerCount", "None"),
+            "jobId": data.get("jobId", "None"),
+            "Spawn": data.get("bossName", "None")
+        }
     }
     return {"message": "successful"}
