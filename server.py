@@ -82,7 +82,7 @@ def update_mirage(data: dict):
         "data": {
             "playerCount": data.get("playerCount", "None"),
             "jobId": data.get("jobId", "None"),
-            "Spawn": data.get("bossName", "None")
+            "Time": data.get("bossName", "None")
         }
     }
     return {"message": "successful"}
