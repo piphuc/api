@@ -26,7 +26,7 @@ latest_mirage = {
     "data": {
         "playerCount": "None",
         "jobId": "None",
-        "bossName": "None"
+        "Time": "None"
     }
 }
 
