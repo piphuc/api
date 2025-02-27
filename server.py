@@ -30,12 +30,12 @@ latest_mirage = {
     }
 }
 
-@app.get("/doughking")
+@app.get("/doughkingv2")
 def get_doughking():
     """Trả về dữ liệu mới nhất của Dough King"""
     return latest_doughking
 
-@app.post("/doughking")
+@app.post("/doughkingv2")
 def update_doughking(data: dict):
     """Cập nhật dữ liệu của Dough King"""
     global latest_doughking
@@ -49,12 +49,12 @@ def update_doughking(data: dict):
     }
     return {"message": "successful"}
 
-@app.get("/ripindra")
+@app.get("/ripindrav2")
 def get_ripidra():
     """Trả về dữ liệu mới nhất của Rip Indra"""
     return latest_ripidra
 
-@app.post("/ripindra")
+@app.post("/ripindrav2")
 def update_ripidra(data: dict):
     """Cập nhật dữ liệu của Rip Indra"""
     global latest_ripidra
