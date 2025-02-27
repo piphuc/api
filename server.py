@@ -2,7 +2,6 @@ from fastapi import FastAPI
 
 app = FastAPI()
 
-# Biến lưu nội dung embed mới nhất cho từng boss
 latest_doughking = {
     "status": "Offline",
     "data": {
