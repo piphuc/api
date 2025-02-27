@@ -26,7 +26,7 @@ latest_mirage = {
     "data": {
         "playerCount": "None",
         "jobId": "None",
-        "Time": "None"
+        "time": "None"
     }
 }
 
@@ -82,7 +82,7 @@ def update_mirage(data: dict):
         "data": {
             "playerCount": data.get("playerCount", "None"),
             "jobId": data.get("jobId", "None"),
-            "Time": data.get("bossName", "None")
+            "time": data.get("bossName", "None")
         }
     }
     return {"message": "successful"}
